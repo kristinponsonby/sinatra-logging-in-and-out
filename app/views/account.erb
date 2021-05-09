@@ -1,3 +1,6 @@
+#use the is_logged_in? helper method to only display the username and account balance if the user is logged in
+#Otherwise, it should contain a link to the home page.
+#You'll also want to use current_user to display the username and balance.
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +9,11 @@
     <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">  
   </head>
   <body id="page-top">
+    <% if Helpers.is_logged_in?(session) %>
+      <h1>Welcome <%= Helpers.current_user(session).username %></h1>
+      <h3>Your Balance: <%= Helpers.current_user(session).balance %></h3>
     
-
+      <h4><a href="/logout">Log Out</a></h4>
+    <% end %>
   </body>
 </html>
